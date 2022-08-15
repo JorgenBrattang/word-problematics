@@ -1,28 +1,30 @@
 question = ["The cow has three tables"]
 
-
-def convert(data):
-    """
-    Converts a sentence into a list
-    """
-    return ([i for item in data for i in item.split()])
-     
-
-my_list = (convert(question))
-
-
 unique_numbers = [
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
         "sixteen", "seventeen", "eighteen", "nineteen",
         ]
 
-new_list = []
-for x in range(len(my_list)):
-    if my_list[x] in unique_numbers:
-        new_list.append(unique_numbers.index(my_list[x]))
-    else:
-        new_list.append(my_list[x])
+
+def convert_into_list(data):
+    """
+    Converts a sentence into a list
+    """
+    return ([i for item in data for i in item.split()])
+     
+
+def words_into_numbers(data):
+    new_list = []
+    for x in range(len(data)):
+        if data[x] in unique_numbers:
+            new_list.append(unique_numbers.index(data[x]))
+        else:
+            new_list.append(data[x])
+    return new_list
+
 
 print(question)
-print(new_list)
+my_list = convert_into_list(question)
+question_with_number = words_into_numbers(my_list)
+print(question_with_number)
