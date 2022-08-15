@@ -1,3 +1,8 @@
+"""
+This holds the question, that will be converted by respected
+functions to get the correct number for the string entered.
+Example: three = 3
+"""
 question = ["The cow has three tables"]
 
 unique_numbers = [
@@ -12,15 +17,16 @@ def convert_into_list(data):
     Converts a sentence into a list
     """
     return ([i for item in data for i in item.split()])
-     
+
 
 def words_into_numbers(data):
     new_list = []
-    for x in range(len(data)):
-        if data[x] in unique_numbers:
-            new_list.append(unique_numbers.index(data[x]))
+    # for x in range(len(data)):
+    for count, item in enumerate(data):
+        if data[count] in unique_numbers:
+            new_list.append(unique_numbers.index(data[count]))
         else:
-            new_list.append(data[x])
+            new_list.append(data[count])
     return new_list
 
 
