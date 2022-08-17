@@ -20,7 +20,7 @@ def welcome_message():
     Display the welcome message
     """
     message = """
-    Welcome, this game will challenge your reading ability
+    Welcome, this game will test your reading ability
     to solve mathimatic problems. If you can't solve them right away.
     The program will help you along the way, by simplyfiying it for you.
     """
@@ -31,7 +31,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["The cow has five tables"]
+    return ["What is four divided by two"]
 
 
 def start_game():
@@ -59,11 +59,15 @@ def answer_question(question):
     """
     This will hold a random question, but for testing purpose only hold one.
     """
-    print(f"\n{question}")
+    line_break()
+    question_unjoin = question
+    question_joined = ' '.join(str(x) for x in question)
+    print(question_joined)
+
     while True:
         user_input_question = input("Enter answer here: ")
         if user_input_question.isnumeric():
-            check_if_correct(user_input_question, question)
+            check_if_correct(user_input_question, question_unjoin)
             break
         else:
             line_break()
@@ -87,7 +91,10 @@ def check_if_correct(answer, question):
             simplyfy_input = input("Enter answer here: ").lower()
             if simplyfy_input.isalpha():
                 if "y" == simplyfy_input:
-                    simplyfy_word_into_num(question)
+                    if 4 in question:
+                        print("Yes")
+                    else:
+                        simplyfy_word_into_num(question)
                     break
                 elif "n" == simplyfy_input:
                     answer_question(question)
@@ -105,15 +112,17 @@ def simplyfy_word_into_num(question):
     """
     my_list = convert_into_list(question)
     question_with_number = words_into_numbers(my_list)
-    make_string = ' '.join(str(x) for x in question_with_number)
-    answer_question(make_string)
+    answer_question(question_with_number)
 
 
 def convert_into_list(question):
     """
-    Converts a sentence into a list
+    Converts a sentence into a list and make all lowercase letters
     """
-    return ([i for item in question for i in item.split()])
+    lower_list = ([i for item in question for i in item.split()])
+    for count, item in enumerate(lower_list):
+        lower_list[count] = lower_list[count].lower()
+    return lower_list
 
 
 def words_into_numbers(data):
@@ -123,6 +132,7 @@ def words_into_numbers(data):
     new_list = []
     for count, item in enumerate(data):
         if data[count] in unique_numbers:
+            print(data)
             new_list.append(unique_numbers.index(data[count]))
         else:
             new_list.append(data[count])
@@ -169,10 +179,8 @@ def intro():
 
 intro()
 
-# question = ["The cow has three tables"]
-# print(question)
+# question = ["What is four divided by two"]
 # my_list = convert_into_list(question)
-# print(my_list)
 # question_with_number = words_into_numbers(my_list)
-# print(question_with_number)
-# print(' '.join(str(x) for x in question_with_number))
+# x = (' '.join(str(x) for x in question_with_number))
+# print(x.capitalize())
