@@ -33,8 +33,18 @@ def start_game():
     Would you like to start? Press (Y) for yes and (N) for no
     """
     print(start_message)
-    user_input = input("Enter answer here: ")
-    print(user_input)
+    while True:
+        user_input = input('Enter answer here: ').lower()
+        if user_input.isalpha():
+            if "y" in user_input:
+                print("Hello")
+                break
+            elif "n" in user_input:
+                print("Bye!")
+                break
+            else:
+                print('Must be (Y) or (N) to continue')
+    return user_input
 
 
 def convert_into_list(data):
@@ -45,6 +55,9 @@ def convert_into_list(data):
 
 
 def words_into_numbers(data):
+    """
+    Converts the alphabetic number into an integer
+    """
     new_list = []
     # for x in range(len(data)):
     for count, item in enumerate(data):
@@ -61,6 +74,7 @@ def main():
     """
     welcome_message()
     start_game()
+
 
 main()
 # print(question)
