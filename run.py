@@ -1,10 +1,3 @@
-"""
-This holds the question, that will be converted by respected
-functions to get the correct number for the string entered.
-Example: three = 3
-"""
-question = ["The cow has three tables"]
-
 unique_numbers = [
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
@@ -37,14 +30,33 @@ def start_game():
         user_input = input('Enter answer here: ').lower()
         if user_input.isalpha():
             if "y" in user_input:
-                print("Hello")
+                random_question()
                 break
             elif "n" in user_input:
-                print("Bye!")
+                quit_game_message()
                 break
             else:
                 print('Must be (Y) or (N) to continue')
-    return user_input
+        else:
+            print('Must be (Y) or (N) to continue')
+            
+
+def random_question():
+    """
+    This will hold a random question, but for testing purpose only hold one.
+    """
+    question = ["The cow has three tables"]
+    print(question)
+
+
+def quit_game_message():
+    """
+    If the user don't want to play anymore, this will give a goodbye message
+    """
+    quit_game = """
+    Sorry to see you leave, but hope you learned something along the way!
+    """
+    print(quit_game)
 
 
 def convert_into_list(data):
