@@ -69,7 +69,7 @@ def check_if_correct(answer, question):
 
     # For some reason this comes out false.. But the variable answer output = 5
     print(answer)
-    if answer == 5:
+    if answer == str(5):
         print("You are correct!")
     else:
         print("Try again!")
