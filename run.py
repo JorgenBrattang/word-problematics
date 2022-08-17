@@ -12,6 +12,31 @@ unique_numbers = [
         ]
 
 
+def welcome_message():
+    """
+    Display the welcome message
+    """
+    message = """
+    Welcome, this game will challenge your reading ability
+    to solve mathimatic problems. If you can't solve them right away.
+    The program will help you along the way, by simplyfiying it for
+    you.
+    """
+    print(message)
+
+
+def start_game():
+    """
+    Starts the game
+    """
+    start_message = """
+    Would you like to start? Press (Y) for yes and (N) for no
+    """
+    print(start_message)
+    user_input = input("Enter answer here: ")
+    print(user_input)
+
+
 def convert_into_list(data):
     """
     Converts a sentence into a list
@@ -30,7 +55,15 @@ def words_into_numbers(data):
     return new_list
 
 
-print(question)
-my_list = convert_into_list(question)
-question_with_number = words_into_numbers(my_list)
-print(question_with_number)
+def main():
+    """
+    Runs the games functions in order
+    """
+    welcome_message()
+    start_game()
+
+main()
+# print(question)
+# my_list = convert_into_list(question)
+# question_with_number = words_into_numbers(my_list)
+# print(question_with_number)
