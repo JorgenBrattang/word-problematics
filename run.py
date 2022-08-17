@@ -21,6 +21,13 @@ def welcome_message():
     print(message)
 
 
+def random_question():
+    """
+    This will hold the code for randomize the questions
+    """
+    return ["The cow has three tables"]
+
+
 def start_game():
     """
     Starts the game
@@ -33,8 +40,7 @@ def start_game():
         user_input = input('Enter answer here: ').lower()
         if user_input.isalpha():
             if "y" in user_input:
-                question = ["The cow has three tables"]
-                random_question(question)
+                answer_question(random_question())
                 break
             elif "n" in user_input:
                 quit_game_message()
@@ -45,7 +51,7 @@ def start_game():
             print('Must be (Y) or (N) to continue')
 
 
-def random_question(question):
+def answer_question(question):
     """
     This will hold a random question, but for testing purpose only hold one.
     """
@@ -66,11 +72,9 @@ def check_if_correct(answer, question):
     answer. But for now it only holds "5" for checking purpose.
     """
     print(f"\nYour question was\n {question}\n And your answer was: {answer}")
-
-    # For some reason this comes out false.. But the variable answer output = 5
-    print(answer)
     if answer == str(5):
-        print("You are correct!")
+        print(f"You answered: {answer} which is correct!\n")
+        play_again()
     else:
         print("Try again!")
         simplyfy_message = """
@@ -84,7 +88,7 @@ def check_if_correct(answer, question):
                     simplyfy_word_into_num(question)
                     break
                 elif "n" in simplyfy_input:
-                    random_question(question)
+                    answer_question(question)
                     break
                 else:
                     print('Must be (Y) or (N) to continue')
@@ -100,7 +104,7 @@ def simplyfy_word_into_num(question):
     my_list = convert_into_list(question)
     question_with_number = words_into_numbers(my_list)
     make_string = ' '.join(str(x) for x in question_with_number)
-    random_question(make_string)
+    answer_question(make_string)
 
 
 def convert_into_list(question):
@@ -123,6 +127,29 @@ def words_into_numbers(data):
     return new_list
 
 
+def play_again():
+    """
+    Allows you to choose to play again
+    """
+    play_message = """
+        "Do you want to play again?: Y or N":
+        """
+    print(play_message)
+    while True:
+        play_again_input = input('Enter answer here: ').lower()
+        if play_again_input.isalpha():
+            if "y" in play_again_input:
+                answer_question(random_question())
+                break
+            elif "n" in play_again_input:
+                print("No")
+                break
+            else:
+                print('Must be (Y) or (N) to continue')
+        else:
+            print('Must be (Y) or (N) to continue')
+
+
 def quit_game_message():
     """
     If the user don't want to play anymore, this will give a goodbye message
@@ -133,15 +160,15 @@ def quit_game_message():
     print(quit_game)
 
 
-def main():
+def intro():
     """
-    Runs the games functions in order
+    Starts up the game
     """
     welcome_message()
     start_game()
 
 
-main()
+intro()
 
 # question = ["The cow has three tables"]
 # print(question)
