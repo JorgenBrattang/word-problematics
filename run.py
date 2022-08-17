@@ -8,6 +8,13 @@ unique_numbers = [
         ]
 
 
+def line_break():
+    """
+    Line break in code
+    """
+    return print(f"\n")
+
+
 def welcome_message():
     """
     Display the welcome message
@@ -15,8 +22,7 @@ def welcome_message():
     message = """
     Welcome, this game will challenge your reading ability
     to solve mathimatic problems. If you can't solve them right away.
-    The program will help you along the way, by simplyfiying it for
-    you.
+    The program will help you along the way, by simplyfiying it for you.
     """
     print(message)
 
@@ -25,30 +31,28 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["The cow has three tables"]
+    return ["The cow has five tables"]
 
 
 def start_game():
     """
     Starts the game
     """
-    start_message = """
-    Would you like to start? Press (Y) for yes and (N) for no
-    """
-    print(start_message)
+    print("Would you like to start? Press (Y) for yes and (N) for no")
     while True:
-        user_input = input('Enter answer here: ').lower()
+        user_input = input("Enter answer here: ").lower()
         if user_input.isalpha():
-            if "y" in user_input:
+            if "y" == user_input:
                 answer_question(random_question())
                 break
-            elif "n" in user_input:
+            elif "n" == user_input:
                 quit_game_message()
                 break
             else:
-                print('Must be (Y) or (N) to continue')
+                print(f"\nYou entered {user_input}\nMust be (Y) or (N)")
         else:
-            print('Must be (Y) or (N) to continue')
+            line_break()
+            print("Must be (Y) or (N) to continue")
 
 
 def answer_question(question):
@@ -57,12 +61,13 @@ def answer_question(question):
     """
     print(f"\n{question}")
     while True:
-        user_input_question = input('Enter answer here: ')
+        user_input_question = input("Enter answer here: ")
         if user_input_question.isnumeric():
             check_if_correct(user_input_question, question)
             break
         else:
-            print('Your answer must only containt numbers 0-9')
+            line_break()
+            print("Your answer must only containt numbers 0-9")
 
 
 def check_if_correct(answer, question):
@@ -71,29 +76,26 @@ def check_if_correct(answer, question):
     on check the question and do the math it self to get the correct
     answer. But for now it only holds "5" for checking purpose.
     """
-    print(f"\nYour question was\n {question}\n And your answer was: {answer}")
     if answer == str(5):
-        print(f"You answered: {answer} which is correct!\n")
+        print(f"\n{answer} is correct! Good job!\n")
         play_again()
     else:
-        print("Try again!")
-        simplyfy_message = """
-        "Do you want to simplyfy the question?: Y or N":
-        """
-        print(simplyfy_message)
+        print("    Try again!")
+        line_break()
+        print("Do you want to simplyfy the question?: Y or N")
         while True:
-            simplyfy_input = input('Enter answer here: ').lower()
+            simplyfy_input = input("Enter answer here: ").lower()
             if simplyfy_input.isalpha():
-                if "y" in simplyfy_input:
+                if "y" == simplyfy_input:
                     simplyfy_word_into_num(question)
                     break
-                elif "n" in simplyfy_input:
+                elif "n" == simplyfy_input:
                     answer_question(question)
                     break
                 else:
-                    print('Must be (Y) or (N) to continue')
+                    print("Must be (Y) or (N) to continue")
             else:
-                print('Must be (Y) or (N) to continue')
+                print("Must be (Y) or (N) to continue")
 
 
 def simplyfy_word_into_num(question):
@@ -131,23 +133,20 @@ def play_again():
     """
     Allows you to choose to play again
     """
-    play_message = """
-        "Do you want to play again?: Y or N":
-        """
-    print(play_message)
+    print("Do you want to play again?: Y or N")
     while True:
-        play_again_input = input('Enter answer here: ').lower()
+        play_again_input = input("Enter answer here: ").lower()
         if play_again_input.isalpha():
-            if "y" in play_again_input:
+            if "y" == play_again_input:
                 answer_question(random_question())
                 break
-            elif "n" in play_again_input:
-                print("No")
+            elif "n" == play_again_input:
+                print("Hope you had fun!")
                 break
             else:
-                print('Must be (Y) or (N) to continue')
+                print("Must be (Y) or (N) to continue")
         else:
-            print('Must be (Y) or (N) to continue')
+            print("Must be (Y) or (N) to continue")
 
 
 def quit_game_message():
