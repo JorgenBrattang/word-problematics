@@ -30,7 +30,8 @@ def start_game():
         user_input = input('Enter answer here: ').lower()
         if user_input.isalpha():
             if "y" in user_input:
-                random_question()
+                question = ["The cow has three tables"]
+                random_question(question)
                 break
             elif "n" in user_input:
                 quit_game_message()
@@ -39,14 +40,36 @@ def start_game():
                 print('Must be (Y) or (N) to continue')
         else:
             print('Must be (Y) or (N) to continue')
-            
+    
 
-def random_question():
+def random_question(question):
     """
     This will hold a random question, but for testing purpose only hold one.
     """
-    question = ["The cow has three tables"]
     print(question)
+    while True:
+        user_input_question = input('Enter answer here: ')
+        if user_input_question.isnumeric():
+            check_if_correct(user_input_question, question)
+            break
+        else:
+            print('Your answer must only containt numbers 0-9')
+
+
+def check_if_correct(answer, question):
+    """
+    Checks if the answer is correct to the question, this will later
+    on check the question and do the math it self to get the correct
+    answer. But for now it only holds "5" for checking purpose.
+    """
+    print(f"\nYour question was\n {question}\n And your answer was: {answer}")
+
+    # For some reason this comes out false.... But the variable answer output is 5
+    print(answer)
+    if answer == 5:
+        print("You are correct!")
+    else:
+        print("Try again!")
 
 
 def quit_game_message():
@@ -89,6 +112,10 @@ def main():
 
 
 main()
+
+
+
+
 # print(question)
 # my_list = convert_into_list(question)
 # question_with_number = words_into_numbers(my_list)
