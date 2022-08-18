@@ -28,7 +28,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What is five minus five"]
+    return ["What is five divided five"]
 
 
 def start_game():
@@ -87,6 +87,7 @@ def check_if_correct(answer, question):
         play_again()
     else:
         print("    Try again!")
+        divider()
         print("Do you want to simplyfy the question?: Y or N")
         while True:
             simplyfy_input = input("Enter answer here: ").lower()
@@ -95,7 +96,7 @@ def check_if_correct(answer, question):
                 if "y" == simplyfy_input:
                     for item in question:
                         if item in control_list:
-                            print('true')
+                            print("Make this show the solution")
                         else:
                             simplyfied = simplyfy_to_function(question)
                             answer_question(simplyfied)
@@ -125,7 +126,6 @@ def simplyfy_to_function(question):
     stage_two = words_into_numbers(stage_one)
     stage_three = word_into_operations(stage_two)
     stage_four = delete_remaining_words(stage_three)
-    
     return stage_four
 
 
@@ -133,6 +133,12 @@ def convert_into_list(question):
     """
     Converts a sentence into a list and make all lowercase letters
     """
+    control_list = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
+    ]
+    for item in question:
+        if item in control_list:
+            return question
     lower_list = ([i for item in question for i in item.split()])
     for count, item in enumerate(lower_list):
         lower_list[count] = lower_list[count].lower()
@@ -190,8 +196,20 @@ def math_function(data):
     """
     Change to incoming data into a working math function.
     """
-    # Add control later
-    data = 5
+    function = simplyfy_to_function(data)
+    for x in function:
+        if x == "/":
+            function.remove(x)
+            data = function[0]/function[1]
+        elif x == "*":
+            function.remove(x)
+            data = function[0]/function[1]
+        elif x == "+":
+            function.remove(x)
+            data = function[0]/function[1]
+        elif x == "-":
+            function.remove(x)
+            data = function[0]/function[1]
     return data
 
 
