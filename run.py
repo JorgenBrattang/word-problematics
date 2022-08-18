@@ -35,7 +35,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What is four minus by two"]
+    return ["What ignored five minus five"]
 
 
 def start_game():
@@ -117,7 +117,8 @@ def simplyfy_word_into_num(question):
     my_list = convert_into_list(question)
     question_with_number = words_into_numbers(my_list)
     question_with_operators = word_into_operations(question_with_number)
-    answer_question(question_with_operators)
+    simplyfied_question = delete_remaining_words(question_with_operators)
+    answer_question(simplyfied_question)
 
 
 def convert_into_list(question):
@@ -149,7 +150,6 @@ def word_into_operations(data):
     """
     for count, item in enumerate(data):
         if item in operators:
-            # new_list.append(operators.index(data[count]))
             if item == "divided":
                 data[count] = "/"
             elif item == "multiply":
@@ -158,6 +158,33 @@ def word_into_operations(data):
                 data[count] = "-"
             elif item == "add":
                 data[count] = "+"
+    return data
+
+
+def delete_remaining_words(data):
+    """
+    This will delete the remaining words so your only
+    left with the operators and numbers
+    """
+    control_list = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
+    ]
+    # for count, item in enumerate(data):
+    #     if item in control_list:
+    #         pass
+    #     else:
+    #         data.remove(item)
+    print(data)
+    for item in data:
+        if item in control_list:
+            print(item)
+        else:
+            data.remove(item)
+    # for item in data:
+    #     if item in control_list:
+    #         print(item)
+    #     else:
+    #         data.remove(item)
     return data
 
 
@@ -200,14 +227,3 @@ def intro():
 
 
 intro()
-# question = ["What is four divided by two"]
-# my_list = convert_into_list(question)
-# print(my_list)
-# new_list = word_into_operations(my_list)
-# print(new_list)
-
-
-
-# question_with_number = words_into_numbers(my_list)
-# x = (' '.join(str(x) for x in question_with_number))
-# print(x.capitalize())
