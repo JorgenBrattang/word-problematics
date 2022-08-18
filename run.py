@@ -7,6 +7,10 @@ unique_numbers = [
         "sixteen", "seventeen", "eighteen", "nineteen",
         ]
 
+operators = [
+        "divided", "multiply", "minus", "add",
+        ]
+
 
 def line_break():
     """
@@ -31,7 +35,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What is four divided by two"]
+    return ["What is four minus by two"]
 
 
 def start_game():
@@ -92,7 +96,7 @@ def check_if_correct(answer, question):
             if simplyfy_input.isalpha():
                 if "y" == simplyfy_input:
                     if 4 in question:
-                        print("Yes")
+                        print("Yes")  # This
                     else:
                         simplyfy_word_into_num(question)
                     break
@@ -112,7 +116,8 @@ def simplyfy_word_into_num(question):
     """
     my_list = convert_into_list(question)
     question_with_number = words_into_numbers(my_list)
-    answer_question(question_with_number)
+    question_with_operators = word_into_operations(question_with_number)
+    answer_question(question_with_operators)
 
 
 def convert_into_list(question):
@@ -132,11 +137,28 @@ def words_into_numbers(data):
     new_list = []
     for count, item in enumerate(data):
         if data[count] in unique_numbers:
-            print(data)
             new_list.append(unique_numbers.index(data[count]))
         else:
             new_list.append(data[count])
     return new_list
+
+
+def word_into_operations(data):
+    """
+    Converts the alphabetic operator into an operator
+    """
+    for count, item in enumerate(data):
+        if item in operators:
+            # new_list.append(operators.index(data[count]))
+            if item == "divided":
+                data[count] = "/"
+            elif item == "multiply":
+                data[count] = "*"
+            elif item == "minus":
+                data[count] = "-"
+            elif item == "add":
+                data[count] = "+"
+    return data
 
 
 def play_again():
@@ -178,9 +200,14 @@ def intro():
 
 
 intro()
-
 # question = ["What is four divided by two"]
 # my_list = convert_into_list(question)
+# print(my_list)
+# new_list = word_into_operations(my_list)
+# print(new_list)
+
+
+
 # question_with_number = words_into_numbers(my_list)
 # x = (' '.join(str(x) for x in question_with_number))
 # print(x.capitalize())
