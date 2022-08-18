@@ -35,7 +35,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What ignored five minus five"]
+    return ["What is five minus five"]
 
 
 def start_game():
@@ -84,7 +84,8 @@ def check_if_correct(answer, question):
     on check the question and do the math it self to get the correct
     answer. But for now it only holds "5" for checking purpose.
     """
-    if answer == str(5):
+    correct_answer = math_function(question)
+    if int(answer) == correct_answer:
         print(f"\n{answer} is correct! Good job!\n")
         play_again()
     else:
@@ -111,8 +112,8 @@ def check_if_correct(answer, question):
 
 def simplyfy_word_into_num(question):
     """
-    This will simplyfy the question with numbers instead
-    of the alphabetic number like "Three into 3"
+    This will simplyfy the question with numbers and operators instead
+    of the alphabetic once like "five divided by four" into "5/4"
     """
     my_list = convert_into_list(question)
     question_with_number = words_into_numbers(my_list)
@@ -172,12 +173,19 @@ def delete_remaining_words(data):
     print(data)
     keep_list = []
     for item in data:
-        print(item)
         if item in control_list:
             keep_list.append(item)
         else:
             pass
     return keep_list
+
+
+def math_function(data):
+    """
+    Change to incoming data into a working math function.
+    """
+    data = 5
+    return data
 
 
 def play_again():
