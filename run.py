@@ -169,23 +169,15 @@ def delete_remaining_words(data):
     control_list = [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
     ]
-    # for count, item in enumerate(data):
-    #     if item in control_list:
-    #         pass
-    #     else:
-    #         data.remove(item)
     print(data)
+    keep_list = []
     for item in data:
+        print(item)
         if item in control_list:
-            print(item)
+            keep_list.append(item)
         else:
-            data.remove(item)
-    # for item in data:
-    #     if item in control_list:
-    #         print(item)
-    #     else:
-    #         data.remove(item)
-    return data
+            pass
+    return keep_list
 
 
 def play_again():
