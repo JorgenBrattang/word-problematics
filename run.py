@@ -12,13 +12,6 @@ operators = [
         ]
 
 
-def line_break():
-    """
-    Line break in code
-    """
-    return print(f"\n")
-
-
 def welcome_message():
     """
     Display the welcome message
@@ -45,6 +38,7 @@ def start_game():
     print("Would you like to start? Press (Y) for yes and (N) for no")
     while True:
         user_input = input("Enter answer here: ").lower()
+        divider()
         if user_input.isalpha():
             if "y" == user_input:
                 answer_question(random_question())
@@ -55,7 +49,6 @@ def start_game():
             else:
                 print(f"\nYou entered {user_input}\nMust be (Y) or (N)")
         else:
-            line_break()
             print("Must be (Y) or (N) to continue")
 
 
@@ -63,18 +56,17 @@ def answer_question(question):
     """
     This will hold a random question, but for testing purpose only hold one.
     """
-    line_break()
     question_unjoin = question
     question_joined = ' '.join(str(x) for x in question)
     print(question_joined)
 
     while True:
         user_input_question = input("Enter answer here: ")
+        divider()
         if user_input_question.isnumeric():
             check_if_correct(user_input_question, question_unjoin)
             break
         else:
-            line_break()
             print("Your answer must only containt numbers 0-9")
 
 
@@ -85,21 +77,28 @@ def check_if_correct(answer, question):
     answer. But for now it only holds "5" for checking purpose.
     """
     correct_answer = math_function(question)
+
+    control_list = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
+    ]
+
     if int(answer) == correct_answer:
         print(f"\n{answer} is correct! Good job!\n")
         play_again()
     else:
         print("    Try again!")
-        line_break()
         print("Do you want to simplyfy the question?: Y or N")
         while True:
             simplyfy_input = input("Enter answer here: ").lower()
+            divider()
             if simplyfy_input.isalpha():
                 if "y" == simplyfy_input:
-                    if 4 in question:
-                        print("Yes")  # This
-                    else:
-                        simplyfy_word_into_num(question)
+                    for item in question:
+                        if item in control_list:
+                            print('true')
+                        else:
+                            simplyfied = simplyfy_to_function(question)
+                            answer_question(simplyfied)
                     break
                 elif "n" == simplyfy_input:
                     answer_question(question)
@@ -110,16 +109,24 @@ def check_if_correct(answer, question):
                 print("Must be (Y) or (N) to continue")
 
 
-def simplyfy_word_into_num(question):
+def divider():
+    """
+    This will add an divider so you can see where you are better
+    """
+    print('----------------------------------------')
+
+
+def simplyfy_to_function(question):
     """
     This will simplyfy the question with numbers and operators instead
     of the alphabetic once like "five divided by four" into "5/4"
     """
-    my_list = convert_into_list(question)
-    question_with_number = words_into_numbers(my_list)
-    question_with_operators = word_into_operations(question_with_number)
-    simplyfied_question = delete_remaining_words(question_with_operators)
-    answer_question(simplyfied_question)
+    stage_one = convert_into_list(question)
+    stage_two = words_into_numbers(stage_one)
+    stage_three = word_into_operations(stage_two)
+    stage_four = delete_remaining_words(stage_three)
+    
+    return stage_four
 
 
 def convert_into_list(question):
@@ -170,7 +177,6 @@ def delete_remaining_words(data):
     control_list = [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
     ]
-    print(data)
     keep_list = []
     for item in data:
         if item in control_list:
@@ -184,6 +190,7 @@ def math_function(data):
     """
     Change to incoming data into a working math function.
     """
+    # Add control later
     data = 5
     return data
 
