@@ -8,7 +8,7 @@ unique_numbers = [
         ]
 
 operators = [
-        "divided", "multiply", "minus", "add",
+        "divided", "multiplied", "minus", "add",
         ]
 
 
@@ -28,7 +28,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What is five divided five"]
+    return ["What is five multiplied by five"]
 
 
 def start_game():
@@ -166,7 +166,7 @@ def word_into_operations(data):
         if item in operators:
             if item == "divided":
                 data[count] = "/"
-            elif item == "multiply":
+            elif item == "multiplied":
                 data[count] = "*"
             elif item == "minus":
                 data[count] = "-"
@@ -200,17 +200,18 @@ def math_function(data):
     for x in function:
         if x == "/":
             function.remove(x)
-            data = function[0]/function[1]
+            value = function[0]/function[1]
         elif x == "*":
             function.remove(x)
-            data = function[0]/function[1]
+            value = function[0]*function[1]
         elif x == "+":
             function.remove(x)
-            data = function[0]/function[1]
+            value = function[0]+function[1]
         elif x == "-":
             function.remove(x)
-            data = function[0]/function[1]
-    return data
+            value = function[0]-function[1]
+    print(value)
+    return value
 
 
 def play_again():
