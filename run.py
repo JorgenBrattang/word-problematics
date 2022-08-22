@@ -1,12 +1,12 @@
-"""
-Cointains alphabetic numbers between 0-19
-"""
+
+# Cointains alphabetic numbers between 0-19
 unique_numbers = [
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
         "sixteen", "seventeen", "eighteen", "nineteen",
         ]
 
+# Operators alphabetic equivalent
 operators = [
         "divided", "multiplied", "minus", "add",
         ]
@@ -39,6 +39,7 @@ def start_game():
     while True:
         user_input = input("Enter answer here: ").lower()
         divider()
+        # Checks if user input is alphabetic
         if user_input.isalpha():
             if "y" == user_input:
                 answer_question(random_question())
@@ -56,7 +57,9 @@ def answer_question(question):
     """
     This will hold a random question, but for testing purpose only hold one.
     """
+    # Stores the unjoined question for later use.
     question_unjoin = question
+    # Joins the question for user readability.
     question_joined = ' '.join(str(x) for x in question)
     print(question_joined)
 
@@ -72,28 +75,30 @@ def answer_question(question):
 
 def check_if_correct(answer, question):
     """
-    Checks if the answer is correct to the question, this will later
-    on check the question and do the math it self to get the correct
-    answer. But for now it only holds "5" for checking purpose.
+    Checks if the answer is correct to the question.
     """
+
+    # Gets the correct answer from the math function
     correct_answer = math_function(question)
 
+    # Gets the control list
     control = control_list()
 
+    # Converts the answer to an integer and checks the correct answer.
     if int(answer) == correct_answer:
         print(f"\n{answer} is correct! Good job!\n")
         play_again()
     else:
         print("    Try again!")
         divider()
-        # ------------------------
+        # Checks if you have simplyfied enough times to have the option
+        # to check the solution.
         for item in question:
             if item in control:
                 print("Do you want the answer? Y or N")
                 break
             else:
                 print("Do you want to simplyfy the question?: Y or N")
-        # ------------------------
     user_input(control, question, correct_answer)
 
 
@@ -105,6 +110,9 @@ def user_input(control, question, correct_answer):
         if user_input.isalpha():
             if "y" == user_input:
                 for item in question:
+                    # Checks if the question holds control_list()
+                    # If so gives the the solution, otherwise it simplyfies
+                    # the question.
                     if item in control:
                         print(f"This is the correct answer: {correct_answer}")
                         play_again()
@@ -112,6 +120,7 @@ def user_input(control, question, correct_answer):
                     else:
                         simplyfied = simplyfy_to_function(question)
                         answer_question(simplyfied)
+                    # ------------------------
                 break
             elif "n" == user_input:
                 answer_question(question)
@@ -160,7 +169,7 @@ def words_into_numbers(data):
     Converts the alphabetic number into an integer
     """
     new_list = []
-    for count, item in enumerate(data):
+    for count, unused in enumerate(data):
         if data[count] in unique_numbers:
             new_list.append(unique_numbers.index(data[count]))
         else:
@@ -212,6 +221,8 @@ def math_function(data):
     Change to incoming data into a working math function.
     """
     function = simplyfy_to_function(data)
+    # Checks for the operator, if found it delets the str value of it
+    # And does the math on the remaining.
     for x in function:
         if x == "/":
             function.remove(x)
