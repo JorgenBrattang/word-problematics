@@ -88,26 +88,39 @@ def check_if_correct(answer, question):
     else:
         print("    Try again!")
         divider()
-        print("Do you want to simplyfy the question?: Y or N")
-        while True:
-            simplyfy_input = input("Enter answer here: ").lower()
-            divider()
-            if simplyfy_input.isalpha():
-                if "y" == simplyfy_input:
-                    for item in question:
-                        if item in control_list:
-                            print("Make this show the solution")
-                        else:
-                            simplyfied = simplyfy_to_function(question)
-                            answer_question(simplyfied)
-                    break
-                elif "n" == simplyfy_input:
-                    answer_question(question)
-                    break
-                else:
-                    print("Must be (Y) or (N) to continue")
+        # ------------------------
+        for item in question:
+            if item in control_list:
+                print("Do you want the answer? Y or N")
+                break
+            else:
+                print("Do you want to simplyfy the question?: Y or N")
+        # ------------------------
+    user_input(control_list, question, correct_answer)
+
+
+def user_input(control_list, question, correct_answer):
+    """ Checks the user input """
+    while True:
+        user_input = input("Enter answer here: ").lower()
+        divider()
+        if user_input.isalpha():
+            if "y" == user_input:
+                for item in question:
+                    if item in control_list:
+                        print(f"This is the correct answer: {correct_answer}")
+                        break
+                    else:
+                        simplyfied = simplyfy_to_function(question)
+                        answer_question(simplyfied)
+                break
+            elif "n" == user_input:
+                answer_question(question)
+                break
             else:
                 print("Must be (Y) or (N) to continue")
+        else:
+            print("Must be (Y) or (N) to continue")
 
 
 def divider():
@@ -210,7 +223,6 @@ def math_function(data):
         elif x == "-":
             function.remove(x)
             value = function[0]-function[1]
-    print(value)
     return value
 
 
@@ -218,14 +230,17 @@ def play_again():
     """
     Allows you to choose to play again
     """
+    divider()
     print("Do you want to play again?: Y or N")
     while True:
-        play_again_input = input("Enter answer here: ").lower()
-        if play_again_input.isalpha():
-            if "y" == play_again_input:
+        user_input = input("Enter answer here: ").lower()
+        if user_input.isalpha():
+            if "y" == user_input:
+                divider()
                 answer_question(random_question())
                 break
-            elif "n" == play_again_input:
+            elif "n" == user_input:
+                divider()
                 print("Hope you had fun!")
                 break
             else:
