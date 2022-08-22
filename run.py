@@ -78,9 +78,7 @@ def check_if_correct(answer, question):
     """
     correct_answer = math_function(question)
 
-    control_list = [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
-    ]
+    control = control_list()
 
     if int(answer) == correct_answer:
         print(f"\n{answer} is correct! Good job!\n")
@@ -90,16 +88,16 @@ def check_if_correct(answer, question):
         divider()
         # ------------------------
         for item in question:
-            if item in control_list:
+            if item in control:
                 print("Do you want the answer? Y or N")
                 break
             else:
                 print("Do you want to simplyfy the question?: Y or N")
         # ------------------------
-    user_input(control_list, question, correct_answer)
+    user_input(control, question, correct_answer)
 
 
-def user_input(control_list, question, correct_answer):
+def user_input(control, question, correct_answer):
     """ Checks the user input """
     while True:
         user_input = input("Enter answer here: ").lower()
@@ -107,7 +105,7 @@ def user_input(control_list, question, correct_answer):
         if user_input.isalpha():
             if "y" == user_input:
                 for item in question:
-                    if item in control_list:
+                    if item in control:
                         print(f"This is the correct answer: {correct_answer}")
                         play_again()
                         break
@@ -147,11 +145,9 @@ def convert_into_list(question):
     """
     Converts a sentence into a list and make all lowercase letters
     """
-    control_list = [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
-    ]
+    control = control_list()
     for item in question:
-        if item in control_list:
+        if item in control:
             return question
     lower_list = ([i for item in question for i in item.split()])
     for count, item in enumerate(lower_list):
@@ -189,17 +185,22 @@ def word_into_operations(data):
     return data
 
 
+def control_list():
+    """ Holds the control list for numbers and operators """
+    return [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
+    ]
+
+
 def delete_remaining_words(data):
     """
     This will delete the remaining words so your only
     left with the operators and numbers
     """
-    control_list = [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
-    ]
+    control = control_list()
     keep_list = []
     for item in data:
-        if item in control_list:
+        if item in control:
             keep_list.append(item)
         else:
             pass

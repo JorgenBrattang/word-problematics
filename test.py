@@ -12,6 +12,7 @@ def user_input(control_list, question, correct_answer):
                     else:
                         # simplyfied = simplyfy_to_function(question)
                         # answer_question(simplyfied)
+                break
             elif "n" == user_input:
                 # answer_question(question)
                 break
@@ -19,5 +20,3 @@ def user_input(control_list, question, correct_answer):
                 print("Must be (Y) or (N) to continue")
         else:
             print("Must be (Y) or (N) to continue")
-
-
