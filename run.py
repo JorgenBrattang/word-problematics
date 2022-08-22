@@ -6,6 +6,10 @@ unique_numbers = [
         "sixteen", "seventeen", "eighteen", "nineteen",
         ]
 
+tens_numbers = [
+        " ", " ", "twenty", "thirty"
+        ]
+
 # Operators alphabetic equivalent
 operators = [
         "divided", "multiplied", "minus", "add",
@@ -28,7 +32,7 @@ def random_question():
     """
     This will hold the code for randomize the questions
     """
-    return ["What is five multiplied by five"]
+    return ["What is twenty multiplied by five"]
 
 
 def start_game():
@@ -171,8 +175,13 @@ def words_into_numbers(data):
     new_list = []
     for count, unused in enumerate(data):
         if data[count] in unique_numbers:
+            # Gets the numbers between 1-19
             new_list.append(unique_numbers.index(data[count]))
+        elif data[count] in tens_numbers:
+            # Will get the tens numbers, like 20, 30 etc...
+            new_list.append(tens_numbers.index(data[count])*10)
         else:
+            # Applies the words back into the list
             new_list.append(data[count])
     return new_list
 
@@ -197,7 +206,8 @@ def word_into_operations(data):
 def control_list():
     """ Holds the control list for numbers and operators """
     return [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
+        # Make so this list holds all numbers 0-100
+        [20], 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
     ]
 
 
@@ -208,8 +218,11 @@ def delete_remaining_words(data):
     """
     control = control_list()
     keep_list = []
+    print(f"Printing data: {data}")
     for item in data:
         if item in control:
+            keep_list.append(item)
+        if item in control[0]:
             keep_list.append(item)
         else:
             pass
@@ -223,20 +236,23 @@ def math_function(data):
     function = simplyfy_to_function(data)
     # Checks for the operator, if found it delets the str value of it
     # And does the math on the remaining.
-    for x in function:
-        if x == "/":
-            function.remove(x)
-            value = function[0]/function[1]
-        elif x == "*":
-            function.remove(x)
-            value = function[0]*function[1]
-        elif x == "+":
-            function.remove(x)
-            value = function[0]+function[1]
-        elif x == "-":
-            function.remove(x)
-            value = function[0]-function[1]
-    return value
+    if (len(function) < 3):
+        print("Is less than 3, try again.")
+    else:
+        for x in function:
+            if x == "/":
+                function.remove(x)
+                value = function[0]/function[1]
+            elif x == "*":
+                function.remove(x)
+                value = function[0]*function[1]
+            elif x == "+":
+                function.remove(x)
+                value = function[0]+function[1]
+            elif x == "-":
+                function.remove(x)
+                value = function[0]-function[1]
+        return value
 
 
 def play_again():
