@@ -205,10 +205,10 @@ def word_into_operations(data):
 
 def control_list():
     """ Holds the control list for numbers and operators """
-    return [
-        # Make so this list holds all numbers 0-100
-        [20], 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "/", "*", "-", "+",
-    ]
+    numbers_list = list(range(0, 101))
+    operators_list = ["/", "*", "-", "+"]
+    
+    return numbers_list + operators_list
 
 
 def delete_remaining_words(data):
@@ -218,11 +218,9 @@ def delete_remaining_words(data):
     """
     control = control_list()
     keep_list = []
-    print(f"Printing data: {data}")
+    print(f"Printing data: {control}\n")
     for item in data:
         if item in control:
-            keep_list.append(item)
-        if item in control[0]:
             keep_list.append(item)
         else:
             pass
