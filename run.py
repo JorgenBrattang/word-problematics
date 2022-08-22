@@ -109,6 +109,7 @@ def user_input(control_list, question, correct_answer):
                 for item in question:
                     if item in control_list:
                         print(f"This is the correct answer: {correct_answer}")
+                        play_again()
                         break
                     else:
                         simplyfied = simplyfy_to_function(question)
@@ -242,6 +243,7 @@ def play_again():
             elif "n" == user_input:
                 divider()
                 print("Hope you had fun!")
+                quit_game_message()
                 break
             else:
                 print("Must be (Y) or (N) to continue")
@@ -257,7 +259,8 @@ def quit_game_message():
     Sorry to see you leave, but hope you learned something along the way!
     """
     print(quit_game)
-
+    exit()
+    
 
 def intro():
     """
